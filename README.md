@@ -6,45 +6,50 @@ The script currently scrapes sets 1, 2, and 3 by default.
 
 ## Features
 
-• Fetches card data (title, set number, card number, type, stats, lore, etc.).
-• Downloads card images into per-set folders.
-• Generates Markdown files with YAML frontmatter for each card:
-• Title, set number, card number.
-• Scraped stats (strength, vitality, culture, rarity, etc.).
-• Placeholders for collection info (amount, value, sold_price, etc.).
-• Link to the downloaded image.
-• Configurable via .env file (base URL for scraping).
+- Fetches card data (title, set number, card number, type, stats, lore, etc.).
+- Downloads card images into per-set folders.
+- Generates Markdown files with YAML frontmatter for each card:
+- Title, set number, card number.
+- Scraped stats (strength, vitality, culture, rarity, etc.).
+- Placeholders for collection info (amount, value, sold_price, etc.).
+- Link to the downloaded image.
+- Configurable via .env file (base URL for scraping).
 
-⸻
+## Requirements
 
-Requirements
-• Go 1.21+
-• Dependencies (installed via go mod tidy):
-• PuerkitoBio/goquery — HTML scraping.
-• joho/godotenv — .env file support.
+- Go 1.21+
+- Dependencies (installed via go mod tidy):
+- [PuerkitoBio/goquery](https://github.com/PuerkitoBio/goquery) — HTML scraping.
+- [joho/godotenv](https://github.com/joho/godotenv) — .env file support.
 
-⸻
+## Setup
 
-Setup 1. Clone the repo:
+1. Clone the repo:
 
-git clone <https://github.com/snelling-a/lotr-tcg-crawler.git>
+```sh
+git clone https://github.com/snelling-a/lotr-tcg-crawler.git
 cd lotr-tcg-crawler
+```
 
-    2. Create a .env file in the project root:
+2. Create a .env file in the project root:
 
 ```sh
 export BASE_URL=https://link/to/card/data
 ```
 
-    3. Build the project:
+3. Build the project:
 
+```sh
 go build -o crawler
+```
 
 ## Usage
 
 Run the crawler:
 
+```sh
 ./crawler
+```
 
 It will:
 
@@ -56,10 +61,15 @@ It will:
 
 ```
 output/
-01/
-    01001_the_one_ring_isildurs_bane.md
-    the_one_ring_isildurs_bane.jpg
-02/
+├── 01/
+│   ├── 01001_the_one_ring_isildurs_bane.md
+│   └── the_one_ring_isildurs_bane.jpg
+├── 02/
+│   ├── 02001_card_name.md
+│   └── card_name.jpg
+└── 03/
+    ├── 03001_card_name.md
+    └── card_name.jpg
 ...
 ```
 
