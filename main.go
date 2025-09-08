@@ -98,7 +98,7 @@ func ScrapeLOTRCard(r io.Reader, url string) (*CardData, error) {
 		return nil, fmt.Errorf("image src not found")
 	}
 	titleAttr, _ := imgSel.Attr("title")
-	fullURL := url + src
+	fullURL := os.Getenv("BASE_URL") + src
 	imagePath := sanitizeFilename(title) + filepath.Ext(src)
 
 	return &CardData{
@@ -164,12 +164,12 @@ func main() {
 
 	tmpDir := "output"
 
-	for _, set := range []int{1, 2, 3} {
+	for _, set := range []int{4} {
 		fmt.Printf("Scraping set %d\n", set)
 
 		for i := 1; ; i++ {
 			cardNo := fmt.Sprintf("%02d%03d", set, i)
-			url := fmt.Sprintf("%s/lotr%s", baseURL, cardNo)
+			url := fmt.Sprintf("%s/wiki/lotr%s", baseURL, cardNo)
 			fmt.Printf("Fetching %s\n", url)
 
 			resp, err := http.Get(url)
